@@ -2,11 +2,12 @@
 
 {% block content %}
 
-  <h2>Latest Blogs</h2>
-  <hr>
+  <h3 class="my-3">Latest Blogs</h3>
   {% for post in posts %}
     <div class="container-fluid p-4 bg-white mb-4 rounded shadow-sm">
-      <p class="mb-3 text-muted">By {{post.author}} on {{post.date}}</p>
+      <p class="mb-3 text-muted">
+        By {{post.author.first_name}} {{post.author.last_name}} on {{post.date_created | date:"F d, Y"}}
+      </p>
       <h3>{{post.title}}</h3>
       <p>{{post.content}}</p>
     </div>

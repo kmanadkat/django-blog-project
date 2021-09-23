@@ -1,12 +1,7 @@
 from django.shortcuts import render
+from .models import Post
 
 posts = [
-    {
-        'author': 'Krupesh Anadkat',
-        'title': 'Introduction To Blockchain & Cryptocurrency',
-        'content': 'In this article, we would like to understand Blockchain & Cryptocurrency. Why it exists & how could you leverage it as a developer. We will not look at any piece of code in this article, but definitely yes in the coming post. I am a full stack developer by passion, started learning blockchain about 1 and half years ago.',
-        'date': 'July 15, 2021'
-    },
     {
         'author': 'John Rening',
         'title': 'Deploying React Js Project on Google Firebase',
@@ -19,10 +14,11 @@ posts = [
 
 
 def home(request):
-    context = {'posts': posts, 'title': 'Latest Articles'}
+    context = {'posts': Post.objects.all(), 'title': 'Latest Articles',
+               'home_page_status': 'active'}
     return render(request, 'app_blog/home.html', context)
 
 
 def about(request):
-    context = {'title': 'About This Blog'}
+    context = {'title': 'About This Blog', 'about_page_status': 'active'}
     return render(request, 'app_blog/about.html', context)
